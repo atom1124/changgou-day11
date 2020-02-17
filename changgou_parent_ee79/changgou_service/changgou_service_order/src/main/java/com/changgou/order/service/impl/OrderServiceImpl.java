@@ -236,7 +236,7 @@ public class OrderServiceImpl implements OrderService {
         List<OrderItem> orderItemList = redisTemplate.boundHashOps("Carts_" + order.getUsername()).values();
         if(orderItemList != null && orderItemList.size() > 0) {
             //2、构建订单对象，保存订单
-            String orderId = "NO." + idWorker.nextId();
+            String orderId = "NO" + idWorker.nextId();
             order.setId(orderId);
 
             Integer totalNum = 0;  //总数量
@@ -252,7 +252,7 @@ public class OrderServiceImpl implements OrderService {
             order.setIsDelete("0");  //未删除
             //3、构建订单商品对象,保存数据库
             for (OrderItem orderItem : orderItemList) {
-                orderItem.setId("NO." + idWorker.nextId());  //订单商品id
+                orderItem.setId("NO" + idWorker.nextId());  //订单商品id
                 orderItem.setOrderId(orderId);  //订单id
 
                 //统计相关金额

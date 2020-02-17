@@ -18,7 +18,8 @@
         <module>changgou_service_search</module>
         <module>changgou_service_user</module>
         <module>changgou_service_order</module>
-        <module>pay-spring-boot</module>
+        <module>changgou_service_pay</module>
+
     </modules>
 
     <dependencies>

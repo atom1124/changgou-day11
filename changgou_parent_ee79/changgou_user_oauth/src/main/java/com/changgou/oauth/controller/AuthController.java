@@ -60,7 +60,7 @@ public class AuthController {
         //将令牌存储到cookie
         saveCookie(access_token);
 
-        return new Result(true, StatusCode.OK,"登录成功！");
+        return new Result(true, StatusCode.OK,"登录成功！",access_token);
     }
 
     /***

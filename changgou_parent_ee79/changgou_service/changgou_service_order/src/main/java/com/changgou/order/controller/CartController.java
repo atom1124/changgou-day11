@@ -29,7 +29,12 @@ public class CartController {
     @RequestMapping("add")
     public Result add(Integer num, Long skuId) {
         //登录用户
-        String username = "zhangsan";
+        //String username = "zhangsan";
+        //获取令牌
+        Map<String, String> map = TokenDecode.getUserInfo();
+        System.out.println(map);
+        String username = map.get("username");
+
         cartService.add(num,skuId,username);
         return new Result(true, StatusCode.OK,"购物车添加成功");
     }
