@@ -34,10 +34,10 @@ public interface OrderService {
     List<Order> findList(Order order);
 
     /***
-     * 删除Order
-     * @param id
+     * 支付失败了，或者支付超时需要删除订单
+     * @param orderId
      */
-    void delete(String id);
+    void deleteByOrderId(String orderId);
 
     /***
      * 修改Order数据
@@ -49,7 +49,7 @@ public interface OrderService {
      * 新增Order
      * @param order
      */
-    void add(Order order);
+    Order add(Order order);
 
     /**
      * 根据ID查询Order
@@ -63,4 +63,16 @@ public interface OrderService {
      * @return
      */
     List<Order> findAll();
+
+
+    /***
+     * 支付成功-修改订单状态
+     * @param transactionid 交易流水号
+     * @param orderId 订单id
+     */
+
+    void updateStatus(String orderId,String transactionid);
+
+
+
 }

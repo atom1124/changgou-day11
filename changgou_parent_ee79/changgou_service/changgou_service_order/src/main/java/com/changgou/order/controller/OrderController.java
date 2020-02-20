@@ -6,6 +6,7 @@ import entity.Result;
 import entity.StatusCode;
 
 import entity.TokenDecode;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -64,16 +65,19 @@ public class OrderController {
     }
 
     /***
-     * 根据ID删除品牌数据
-     * @param id
+     * 根据ID删除订单
+     * @param orderId
      * @return
      */
-    @DeleteMapping(value = "/{id}" )
-    public Result delete(@PathVariable String id){
+    @DeleteMapping(value = "/{orderId}" )
+    public Result delete(@PathVariable String orderId){
         //调用OrderService实现根据主键删除
-        orderService.delete(id);
+        orderService.deleteByOrderId(orderId);
         return new Result(true,StatusCode.OK,"删除成功");
     }
+
+
+
 
     /***
      * 修改Order数据
@@ -96,12 +100,12 @@ public class OrderController {
      * @return
      */
     @PostMapping
-    public Result add(@RequestBody   Order order){
+    public Result<Order> add(@RequestBody   Order order){
         String username = TokenDecode.getUserInfo().get("username");
         order.setUsername(username);
         //调用OrderService实现添加Order
-        orderService.add(order);
-        return new Result(true,StatusCode.OK,"订单添加成功",order);
+        order = orderService.add(order);
+        return new Result(true,StatusCode.OK,"下单成功,请尽快支付!",order);
     }
 
     /***

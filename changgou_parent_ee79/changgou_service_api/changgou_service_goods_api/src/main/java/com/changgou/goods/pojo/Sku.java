@@ -35,7 +35,7 @@ public class Sku implements Serializable{
     @Column(name = "price")
 	private Integer price;//价格（分）
 	@ApiModelProperty(value = "库存数量",required = false)
-    @Column(name = "num")
+	@Column(name = "num")
 	private Integer num;//库存数量
 	@ApiModelProperty(value = "库存预警数量",required = false)
     @Column(name = "alert_num")

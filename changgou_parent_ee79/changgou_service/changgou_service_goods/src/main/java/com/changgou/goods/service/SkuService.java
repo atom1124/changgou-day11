@@ -72,4 +72,11 @@ public interface SkuService {
      * @return 数据库更新的行数
      */
     int decrCount(String username);
+
+    /**
+     * 库存回滚
+     * @param num
+     * @return 数据库更新的行数
+     */
+    int incrCount(Long skuId,Integer num);
 }

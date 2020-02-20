@@ -18,4 +18,14 @@ public interface SkuMapper extends Mapper<Sku> {
      */
     @Update("UPDATE tb_sku SET num=num-#{num},sale_num=sale_num+#{num} WHERE id = #{id} AND num > #{num}")
     int decrCount(@Param("id") Long id, @Param("num")Integer num);
+
+
+    /**
+     * 回滚库存
+     * @param skuId
+     * @param num
+     * @return
+     */
+    @Update("UPDATE tb_sku SET num=num+#{num},sale_num=sale_num-#{num} WHERE id = #{skuId} ")
+    int incrCount(@Param("skuId") Long skuId, @Param("num")Integer num);
 }
